@@ -6,22 +6,22 @@ module Foundation where
 import Import
 import Yesod
 import Data.Text
-import Database.Persist.Sqlite
+import Database.Persist.Postgresql
     ( ConnectionPool, SqlBackend, runSqlPool, runMigration )
 
 data Sitio = Sitio { connPool :: ConnectionPool }
 
 share [mkPersist sqlSettings, mkMigrate "migrateAll"] [persistLowerCase|
+Departamento
+   nome Text
+   sigla Text 2
+   deriving Show
+
 Pessoa
    nome Text
    idade Int
    salario Double
    deptoid DepartamentoId
-   deriving Show
-
-Departamento
-   nome Text
-   sigla Text
    deriving Show
 |]
 

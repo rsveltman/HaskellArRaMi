@@ -9,10 +9,7 @@ import Control.Monad.Logger (runStdoutLoggingT)
 import Control.Applicative
 import Data.Text
 
-import Database.Persist.Sqlite
-    ( ConnectionPool, SqlBackend, runSqlPool, runMigration
-    , createSqlitePool, runSqlPersistMPool, fromSqlKey
-    )
+import Database.Persist.Postgresql
 
 mkYesodDispatch "Sitio" pRoutes
 
@@ -92,8 +89,9 @@ postDeptoR = do
                     _ -> redirect DeptoR
 
 
+connStr = "dbname=dd9en8l5q4hh2a host=ec2-107-21-219-201.compute-1.amazonaws.com user=kpuwtbqndoeyqb password=aCROh525uugAWF1l7kahlNN3E0 port=5432"
+
 main::IO()
-main = do
-       pool <- runStdoutLoggingT $ createSqlitePool "sitio.db3" 10 -- create a new pool
+main = runStdoutLoggingT $ withPostgresqlPool connStr 10 $ \pool -> liftIO $ do 
        runSqlPersistMPool (runMigration migrateAll) pool
        warpEnv (Sitio pool)
