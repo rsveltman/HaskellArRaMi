@@ -21,7 +21,7 @@ Pessoa
 
 Departamento
    nome Text
-   sigla Text 2
+   sigla Text
    deriving Show
 |]
 
