@@ -16,7 +16,11 @@ mkYesodDispatch "Sitio" pRoutes
 formDepto :: Form Departamento
 formDepto = renderDivs $ Departamento <$>
             areq textField "Nome" Nothing <*>
-            areq textField "Sigla" Nothing
+            areq textField FieldSettings{fsId=Just "hident22",
+                           fsLabel="Sigla",
+                           fsTooltip= Nothing,
+                           fsName= Nothing,
+                           fsAttrs=[("maxlength","2")]} Nothing
 
 formPessoa :: Form Pessoa
 formPessoa = renderDivs $ Pessoa <$>
