@@ -16,7 +16,7 @@ mkYesodDispatch "Sitio" pRoutes
 formDepto :: Form Departamento
 formDepto = renderDivs $ Departamento <$>
             areq textField "Nome" Nothing <*>
-            areq textField FieldSettings{fsId=Just "hident22",
+            areq textField FieldSettings{fsId=Just "hident2",
                            fsLabel="Sigla",
                            fsTooltip= Nothing,
                            fsName= Nothing,
@@ -33,6 +33,7 @@ dptos = do
        entidades <- runDB $ selectList [] [Asc DepartamentoNome] 
        optionsPairs $ fmap (\ent -> (departamentoSigla $ entityVal ent, entityKey ent)) entidades
 
+-- FUNCAO PARA GERAR FORMULARIOS DE UMA MANEIRA GENERICA
 widgetForm :: Route Sitio -> Enctype -> Widget -> Text -> Widget
 widgetForm x enctype widget y = [whamlet|
             <h1>
@@ -91,11 +92,3 @@ postDeptoR = do
                            <h1> #{departamentoNome depto} Inserido com sucesso. 
                        |]
                     _ -> redirect DeptoR
-
-
-connStr = "dbname=dd9en8l5q4hh2a host=ec2-107-21-219-201.compute-1.amazonaws.com user=kpuwtbqndoeyqb password=aCROh525uugAWF1l7kahlNN3E0 port=5432"
-
-main::IO()
-main = runStdoutLoggingT $ withPostgresqlPool connStr 10 $ \pool -> liftIO $ do 
-       runSqlPersistMPool (runMigration migrateAll) pool
-       warpEnv (Sitio pool)
