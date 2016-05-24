@@ -27,6 +27,8 @@ Pessoa
 
 mkYesodData "Sitio" pRoutes
 
+mkMessage "Sitio" "messages" "pt-br"
+
 instance YesodPersist Sitio where
    type YesodPersistBackend Sitio = SqlBackend
    runDB f = do

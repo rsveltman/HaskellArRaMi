@@ -33,6 +33,11 @@ dptos = do
        entidades <- runDB $ selectList [] [Asc DepartamentoNome] 
        optionsPairs $ fmap (\ent -> (departamentoSigla $ entityVal ent, entityKey ent)) entidades
 
+getHelloR :: Handler Html
+getHelloR = defaultLayout [whamlet|
+     <h1> _{MsgHello}
+|]
+
 -- FUNCAO PARA GERAR FORMULARIOS DE UMA MANEIRA GENERICA
 widgetForm :: Route Sitio -> Enctype -> Widget -> Text -> Widget
 widgetForm x enctype widget y = [whamlet|
@@ -51,19 +56,26 @@ getCadastroR = do
 getPessoaR :: PessoaId -> Handler Html
 getPessoaR pid = do
              pessoa <- runDB $ get404 pid 
+             dpto <- runDB $ get404 (pessoaDeptoid pessoa)
              defaultLayout [whamlet| 
                  <h1> Seja bem-vindx #{pessoaNome pessoa}
                  <p> Salario: #{pessoaSalario pessoa}
                  <p> Idade: #{pessoaIdade pessoa}
+                 <p> Departamento: #{departamentoNome dpto}
              |]
 
 getListarR :: Handler Html
 getListarR = do
              listaP <- runDB $ selectList [] [Asc PessoaNome]
-             defaultLayout [whamlet|
+             defaultLayout $ [whamlet|
                  <h1> Pessoas cadastradas:
                  $forall Entity pid pessoa <- listaP
-                     <a href=@{PessoaR pid}> #{pessoaNome pessoa} <br>
+                     <a href=@{PessoaR pid}> #{pessoaNome pessoa} 
+                     <form method=post action=@{PessoaR pid}> 
+                         <input type="submit" value="Deletar"><br>
+             |] >> toWidget [lucius|
+                form  { display:inline; }
+                input { background-color: #ecc; border:0;}
              |]
 
 postCadastroR :: Handler Html
@@ -92,3 +104,8 @@ postDeptoR = do
                            <h1> #{departamentoNome depto} Inserido com sucesso. 
                        |]
                     _ -> redirect DeptoR
+
+postPessoaR :: PessoaId -> Handler Html
+postPessoaR pid = do
+     runDB $ delete pid
+     redirect ListarR
