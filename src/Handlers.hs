@@ -20,7 +20,7 @@ formDepto = renderDivs $ Departamento <$>
                            fsLabel="Sigla",
                            fsTooltip= Nothing,
                            fsName= Nothing,
-                           fsAttrs=[("maxlength","2")]} Nothing
+                           fsAttrs=[("maxlength","3")]} Nothing
 
 formPessoa :: Form Pessoa
 formPessoa = renderDivs $ Pessoa <$>
@@ -40,18 +40,14 @@ getHelloR = defaultLayout [whamlet|
 
 -- FUNCAO PARA GERAR FORMULARIOS DE UMA MANEIRA GENERICA
 widgetForm :: Route Sitio -> Enctype -> Widget -> Text -> Widget
-widgetForm x enctype widget y = [whamlet|
-            <h1>
-                Cadastro de #{y}
-            <form method=post action=@{x} enctype=#{enctype}>
-                ^{widget}
-                <input type="submit" value="Cadastrar">
-|]
+widgetForm x enctype widget y = $(whamletFile "templates/form.hamlet")
 
 getCadastroR :: Handler Html
 getCadastroR = do
              (widget, enctype) <- generateFormPost formPessoa
-             defaultLayout $ widgetForm CadastroR enctype widget "Pessoas"
+             defaultLayout $ do 
+                 addStylesheet $ StaticR teste_css
+                 widgetForm CadastroR enctype widget "Pessoas"
 
 getPessoaR :: PessoaId -> Handler Html
 getPessoaR pid = do

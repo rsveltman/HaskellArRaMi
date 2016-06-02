@@ -5,16 +5,17 @@
 module Foundation where
 import Import
 import Yesod
+import Yesod.Static
 import Data.Text
 import Database.Persist.Postgresql
     ( ConnectionPool, SqlBackend, runSqlPool, runMigration )
 
-data Sitio = Sitio { connPool :: ConnectionPool }
+data Sitio = Sitio {getStatic :: Static, connPool :: ConnectionPool }
 
 share [mkPersist sqlSettings, mkMigrate "migrateAll"] [persistLowerCase|
 Departamento
    nome Text
-   sigla Text sqltype=varchar(2)
+   sigla Text sqltype=varchar(3)
    deriving Show
 
 Pessoa
@@ -24,6 +25,8 @@ Pessoa
    deptoid DepartamentoId
    deriving Show
 |]
+
+staticFiles "static"
 
 mkYesodData "Sitio" pRoutes
 

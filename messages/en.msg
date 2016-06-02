@@ -1,1 +1,1 @@
-Hello: I hate PHP and love JAVA
+Hello: I hate PHP and I love JAVA
