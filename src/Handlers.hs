@@ -2,7 +2,6 @@
              TemplateHaskell #-}
  
 module Handlers where
-import Import
 import Yesod
 import Foundation
 import Control.Monad.Logger (runStdoutLoggingT)
@@ -11,7 +10,6 @@ import Data.Text
 
 import Database.Persist.Postgresql
 
-mkYesodDispatch "Sitio" pRoutes
 
 formDepto :: Form Departamento
 formDepto = renderDivs $ Departamento <$>

@@ -2,8 +2,8 @@
              TemplateHaskell #-}
  
 module Main where
-import Import
 import Yesod
+import Front
 import Yesod.Static
 import Foundation
 import Handlers

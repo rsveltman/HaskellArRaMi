@@ -3,7 +3,6 @@
              MultiParamTypeClasses, DeriveDataTypeable,
              GeneralizedNewtypeDeriving, ViewPatterns #-}
 module Foundation where
-import Import
 import Yesod
 import Yesod.Static
 import Data.Text
@@ -28,7 +27,7 @@ Pessoa
 
 staticFiles "static"
 
-mkYesodData "Sitio" pRoutes
+mkYesodData "Sitio" $(parseRoutesFile "config/routes")
 
 mkMessage "Sitio" "messages" "pt-br"
 
