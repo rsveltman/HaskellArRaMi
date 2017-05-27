@@ -1,26 +1,13 @@
+# HASKELL ArRaMi
 
-     ,-----.,--.                  ,--. ,---.   ,--.,------.  ,------.
-    '  .--./|  | ,---. ,--.,--. ,-|  || o   \  |  ||  .-.  \ |  .---'
-    |  |    |  || .-. ||  ||  |' .-. |`..'  |  |  ||  |  \  :|  `--, 
-    '  '--'\|  |' '-' ''  ''  '\ `-' | .'  /   |  ||  '--'  /|  `---.
-     `-----'`--' `---'  `----'  `---'  `--'    `--'`-------' `------'
-    ----------------------------------------------------------------- 
+####REPOSITORIOS
+- github: https://github.com/rsveltman/HaskellArRaMi.git -- nome: **origin**
+- gitlab:  https://RSOV@gitlab.com/RSOV/HaskellArRaMi.git -- nome: **gitlab**
 
-
-Hi there! Welcome to Cloud9 IDE!
-
-To get you started, create some files, play with the terminal,
-or visit http://docs.c9.io for our documentation.
-If you want, you can also go watch some training videos at
-http://www.youtube.com/user/c9ide.
-
-Happy coding!
-The Cloud9 IDE team
-
-IDEIAS
+####IDEIAS
 - reviews de filmes - usuario, filmes, reviews, listas, categoria
 
-BANCO DE DADOS
+####BANCO DE DADOS
 - USUARIO
   - nome
   - email
