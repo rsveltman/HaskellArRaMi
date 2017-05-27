@@ -18,7 +18,7 @@ mkYesodDispatch "Sitio" resourcesSitio
 
 -- O lucius/cassius ficam no executavel
 -- addStylesheet e addScript nao deixa css/js no executavel - nao precisa de toWidgetHead
-getTesteR :: Handler HTML
+getTesteR :: Handler Html
 getTesteR = do
         defaultLayout $ do
             addStylesheet (StaticR teste_css)
@@ -63,7 +63,7 @@ getTesteR = do
             |]
             
 
-getPag1R :: Handler HTML
+getPag1R :: Handler Html
 getPag1R = do
     defaultLayout $ do
         [whamlet|
@@ -72,7 +72,7 @@ getPag1R = do
             <a href=@{TesteR}> Voltar
         |]
         
-getPag2R :: Handler HTML
+getPag2R :: Handler Html
 getPag2R = do
     defaultLayout $ do
         [whamlet|
@@ -81,7 +81,7 @@ getPag2R = do
             <a href=@{TesteR}> Voltar
         |]
         
-getPag3R :: Handler HTML
+getPag3R :: Handler Html
 getPag3R = do
     defaultLayout $ do
         [whamlet|

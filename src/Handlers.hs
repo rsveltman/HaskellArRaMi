@@ -67,7 +67,8 @@ getListarR = do
                      <a href=@{PessoaR pid}> #{pessoaNome pessoa} 
                      <form method=post action=@{PessoaR pid}> 
                          <input type="submit" value="Deletar"><br>
-             |] >> toWidget [lucius|
+             |]
+             toWidget [lucius|
                 form  { display:inline; }
                 input { background-color: #ecc; border:0;}
              |]
