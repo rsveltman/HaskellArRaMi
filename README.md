@@ -1,13 +1,13 @@
 # HASKELL ArRaMi
 
-####REPOSITORIOS
+#### REPOSITORIOS
 - github: https://github.com/rsveltman/HaskellArRaMi.git -- nome: **origin**
 - gitlab:  https://RSOV@gitlab.com/RSOV/HaskellArRaMi.git -- nome: **gitlab**
 
-####IDEIAS
+#### IDEIAS
 - reviews de filmes - usuario, filmes, reviews, listas, categoria
 
-####BANCO DE DADOS
+#### BANCO DE DADOS
 - USUARIO
   - nome
   - email
