@@ -23,6 +23,38 @@ Pessoa
    salario Double
    deptoid DepartamentoId
    deriving Show
+   
+   
+Usuario
+    nome Text
+    email Text
+    senha Text
+    
+Categoria
+    nome Text
+
+Filme
+    nome Text
+    diretor Text
+    ator Text
+    --ano Day
+    pais Text
+    categoria CategoriaId
+    
+Review
+    texto Text
+    nota Int
+    filme FilmeId
+    autor UsuarioId
+    
+Lista
+    nome Text
+    autor UsuarioId
+
+Listafilme
+    filme FilmeId
+    lista ListaId
+    
 |]
 
 staticFiles "static"

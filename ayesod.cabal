@@ -41,4 +41,8 @@ executable         ayesod
     
     other-modules: Foundation,
                    Handlers,
-                   Front
+                   Front,
+                   Usuario,
+                   Review,
+                   Lista,
+                   Cadastro

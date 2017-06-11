@@ -4,6 +4,7 @@
 module Main where
 import Yesod
 import Front
+import Usuario
 import Yesod.Static
 import Foundation
 import Handlers

@@ -1,11 +1,26 @@
-/                   CadastroR   GET POST
-/hello              HelloR      GET
-/listar             ListarR     GET 
-/pessoa/#PessoaId   PessoaR     GET POST
-/depto              DeptoR      GET POST
-/static             StaticR     Static getStatic
+/                               LoginR      GET POST -- Home e form de login
+/cadastro                       CadastroR   GET POST -- Form de cadastro
+/usuario/#UsuarioId             UsuarioR    GET      -- Perfil do usuario com seus reviews
+-- /filme/#FilmeId                 FilmeR      GET      -- Lista de reviews de um filme
+/reviews                        ReviewsR    GET POST -- Lista de reviews e form para fazer novo review
+/usuario/#UsuarioId/#ReviewId   ReviewR     GET POST -- Review especifico e form para deletar
+/listas                         ListasR     GET POST -- Lista de listas e form para fazer nova lista
+/listas/#ListaId                ListaR      GET POST -- Lista especifica e form para deletar
 
-/teste              TesteR      GET
-/pag1               Pag1R       GET
-/pag2               Pag2R       GET
-/pag3               Pag3R       GET
+/static                 StaticR     Static getStatic
+
+
+
+
+-- /hello                  HelloR      GET
+-- /listar                 ListarR     GET 
+-- /pessoa/#PessoaId       PessoaR     GET POST
+-- /depto                  DeptoR      GET POST
+
+
+-- /teste                  TesteR      GET
+-- /pag1                   Pag1R       GET
+-- /pag2                   Pag2R       GET
+-- /pag3                   Pag3R       GET
+
+
