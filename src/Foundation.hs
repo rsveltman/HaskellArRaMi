@@ -71,6 +71,26 @@ instance YesodPersist Sitio where
        runSqlPool f pool
 
 instance Yesod Sitio where
+    authRoute _ = Just LoginR
+    isAuthorized LoginR _ = return Authorized
+    isAuthorized CadastroR _ = return Authorized
+    isAuthorized (StaticR _) _ = return Authorized
+    isAuthorized (UsuarioR _) _ = return Authorized
+    --isAuthorized AdminR _ = isAdmin
+    isAuthorized _ _ = isUser
+
+isAdmin = do
+    mu <- lookupSession "_USER"
+    return $ case mu of
+        Nothing -> AuthenticationRequired
+        Just "admin" -> Authorized
+        Just _ -> Unauthorized "Soh o admin acessa aqui!"
+
+isUser = do
+    mu <- lookupSession "_USER"
+    return $ case mu of
+        Nothing -> AuthenticationRequired
+        Just _ -> Authorized
 
 type Form a = Html -> MForm Handler (FormResult a, Widget)
 

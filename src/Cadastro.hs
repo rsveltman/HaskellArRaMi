@@ -16,6 +16,11 @@ formUsuario = renderDivs $ Usuario <$>
              areq textField "Email" Nothing <*>
              areq textField "Senha" Nothing
 
+formLogin :: Form (Text, Text)
+formLogin = renderDivs $ (,) <$>
+             areq emailField "E-mail" Nothing <*>
+             areq passwordField "Senha" Nothing
+
 widgetLoginForm :: Route Sitio -> Enctype -> Widget -> Text -> Widget
 widgetLoginForm x enctype widget y = $(whamletFile "templates/loginform.hamlet")
 
@@ -24,13 +29,34 @@ widgetForm x enctype widget y = $(whamletFile "templates/form.hamlet")
 
 getLoginR :: Handler Html
 getLoginR = do
-             (widget, enctype) <- generateFormPost formUsuario
+             (widget, enctype) <- generateFormPost formLogin
              defaultLayout $ do 
                  addStylesheet $ StaticR teste_css
-                 widgetLoginForm LoginR enctype widget "Usuarios"
+                 widgetLoginForm LoginR enctype widget "Usuario"
                  
 postLoginR :: Handler Html
-postLoginR = undefined
+postLoginR = do
+                ((result, _), _) <- runFormPost formLogin
+                case result of
+                    FormSuccess ("root@root.com","root2") -> do
+                        setSession "_USER" "admin"
+                        redirect ReviewsR
+                    FormSuccess (email,senha) -> do
+                       temUsu <- runDB $ selectFirst [UsuarioEmail ==. email, UsuarioSenha ==. senha] []
+                       case temUsu of
+                           Nothing -> do
+                               setMessage [shamlet| <p> Usuário ou senha inválido |]
+                               redirect LoginR
+                           Just _ -> do
+                               setSession "_USER" email
+                               defaultLayout [whamlet| Usuário autenticado!|]
+                    _ -> do
+                        redirect LoginR
+
+postLogoutR :: Handler Html
+postLogoutR = do
+    deleteSession "_USER"
+    redirect LoginR
 
 getCadastroR :: Handler Html
 getCadastroR = do

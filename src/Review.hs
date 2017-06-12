@@ -16,14 +16,18 @@ formReview = undefined --renderDivs $ Review <$>
             --  areq intField "Nota" Nothing 
 
 getReviewsR :: Handler Html
-getReviewsR = undefined --do
-            --  listaR <- runDB $ selectList [] []
-            --  defaultLayout $ [whamlet|
-            --      <h1> Reviews
-            --      $forall Entity rid review <- listaR
-            --         uid <- runDB $ get404 (reviewAutor review)
-            --         <a href=@{ReviewR uid rid}> #{reviewFilme review} 
-            --  |]
+getReviewsR = do
+              listaR <- runDB $ selectList [] []
+              filmes <- sequence $ fmap (\r -> runDB $ get404 $ reviewFilme $ entityVal r) listaR
+              revfil <- return $ Prelude.zip listaR filmes
+              
+              defaultLayout $ [whamlet|
+                  <h1> Reviews
+                  
+                  $forall (Entity rid review, filme) <- revfil
+                     <a href=@{ReviewR (reviewAutor review) rid}> #{filmeNome filme}
+ 
+              |]
 
 postReviewsR :: Handler Html
 postReviewsR = undefined --do

@@ -1,6 +1,5 @@
 # HASKELL ArRaMi
 
-# dar isAuthorized para Static
 
 #### REPOSITORIOS
 - github: https://github.com/rsveltman/HaskellArRaMi.git -- nome: **origin**
@@ -8,7 +7,7 @@
 
 #### RODAR O SERVIDOR
 Para rodar, o comando é `stack exec ayesod` dentro do diretorio trabalho.
-Acesse a aplicação temporária em (haskraarmi-romefeller.c9users.io/).
+Acesse a aplicação temporária em haskraarmi-romefeller.c9users.io/.
 
 #### USUARIOS
 Atualmente o usuario e email globais são meus. 

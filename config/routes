@@ -1,4 +1,5 @@
 /                               LoginR      GET POST -- Home e form de login
+/logout                         LogoutR     POST     -- Deleta a sessão do usuário
 /cadastro                       CadastroR   GET POST -- Form de cadastro
 /usuario/#UsuarioId             UsuarioR    GET      -- Perfil do usuario com seus reviews
 -- /filme/#FilmeId                 FilmeR      GET      -- Lista de reviews de um filme
@@ -7,7 +8,7 @@
 /listas                         ListasR     GET POST -- Lista de listas e form para fazer nova lista
 /listas/#ListaId                ListaR      GET POST -- Lista especifica e form para deletar
 
-/static                 StaticR     Static getStatic
+/static                         StaticR     Static getStatic
 
 
 
