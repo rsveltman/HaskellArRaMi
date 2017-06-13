@@ -29,6 +29,7 @@ Usuario
     nome Text
     email Text
     senha Text
+    UniqueEmail email
     
 Categoria
     nome Text

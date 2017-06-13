@@ -1,0 +1,16 @@
+<div class="header">
+    <div class="header-cols">
+        <div class="header-col1">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Logo_TV_2015.png" style="width:50px;">
+        <div class="header-col2">
+            <div class="menu">
+                <ul>
+                    <li>
+                        <div class="btn-reviews">
+                            <h6>
+                                Reviews
+                    <li>
+                        $if isUser
+                            <div class="btn-usuario>
+                        $else
+                            @{LoginR} Login
